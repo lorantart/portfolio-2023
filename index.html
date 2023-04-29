@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorant Toth | Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f2f2f2;
+        }
+
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        #figma-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="figma-container">
+        <iframe id="figma-iframe" src=""></iframe>
+    </div>
+
+    <script>
+        const figmaURLs = {
+            large:  'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Frj2f8IrqkBTmHeDlzsV7lX%2FPortfolio%3Fpage-id%3D0%253A1%26node-id%3D1-289%26viewport%3D1057%252C-115%252C0.17%26scaling%3Dscale-down-width%26starting-point-node-id%3D1%253A289%26hotspot-hints%3D0&hide-ui=1',
+            medium: 'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Frj2f8IrqkBTmHeDlzsV7lX%2FPortfolio-%257C-Lorant-Toth%3Fpage-id%3D0%253A1%26node-id%3D165-3271%26viewport%3D1057%252C-115%252C0.17%26scaling%3Dscale-down-width%26starting-point-node-id%3D165%253A3271%26hotspot-hints%3D0&hide-ui=1',
+            small:  'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Frj2f8IrqkBTmHeDlzsV7lX%2FPortfolio-%257C-Lorant-Toth%3Fpage-id%3D0%253A1%26node-id%3D174-7190%26viewport%3D1434%252C-9035%252C0.31%26scaling%3Dscale-down-width%26starting-point-node-id%3D1%253A289%26hotspot-hints%3D0&hide-ui=1'
+        };
+
+        const figmaIframe = document.getElementById('figma-iframe');
+
+        let currentBreakpoint = '';
+
+        function setFigmaIframeSrc() {
+            const viewportWidth = window.innerWidth;
+            let newBreakpoint = '';
+
+            if (viewportWidth >= 1280) {
+                newBreakpoint = 'large';
+            } else if (viewportWidth >= 720) {
+                newBreakpoint = 'medium';
+            } else {
+                newBreakpoint = 'small';
+            }
+
+            if (currentBreakpoint !== newBreakpoint) {
+                currentBreakpoint = newBreakpoint;
+                figmaIframe.src = figmaURLs[currentBreakpoint];
+            }
+        }
+
+        window.addEventListener('resize', setFigmaIframeSrc);
+        setFigmaIframeSrc();
+    </script>
+</body>
+</html>
